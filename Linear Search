@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+    int a[100];int size,key,i;int count=0;
+    printf("enter the size of array");
+    scanf("%d",&size);
+    
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("enter the key value you want to search");
+    scanf("%d",&key);
+    
+    for(i=0;i<size;i++)
+    {   
+        count=count+1;
+        
+        if(a[i]==key)
+        {
+            printf("key value %d is found at %d",key,count);
+        }
+    }
+    
+    if(count==size)
+    {
+        printf("search element not found");
+    }
+    
+return 0;}
