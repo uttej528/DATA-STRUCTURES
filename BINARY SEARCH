@@ -1,3 +1,4 @@
+//array must be sorted in asending or descending order to perform binary search
 #include<stdio.h>
 int main()
 {
