@@ -1,0 +1,168 @@
+/********************************************************************************************/
+/*****************SINGLY LINKED LIST INSERTION DELETION DISPLAY COUNT OPERATIONS*************/
+/********************************************************************************************/
+
+#include <iostream>
+using namespace std;
+
+
+class node{
+    public:
+    int data;
+    node* next;
+    
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+
+node* head=NULL;node* temp=NULL;
+
+
+
+void insertatbeg(int data)
+{
+    node* newnode=new node(data);
+    if(head==NULL)
+    {
+        head=newnode;
+    }else{
+        newnode->next=head;
+        head=newnode;
+    }
+ 
+}
+
+void display() {
+     temp = head;
+    while (temp != NULL) {
+        cout << temp->data << endl;
+        temp = temp->next;
+    }
+}
+
+
+
+void insertatend(int data)
+{
+     node* newnode=new node(data);
+     if(head==NULL)
+    {
+        head=newnode;
+    }else{
+        temp=head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        temp->next=newnode;
+        
+    }
+}
+
+void insertatpos(int pos,int data)
+{
+    int i=1;
+     node* newnode=new node(data);
+     while(i<pos)
+     {  
+         temp=head;
+         temp=temp->next;
+         i++;
+     }
+     newnode->next=temp->next;
+     temp->next=newnode;
+    
+}
+
+void length()
+{
+    temp=head;
+    int count=0;
+    while(temp!=NULL)
+    {
+        
+        temp=temp->next;
+        count=count+1;
+          
+    }
+    cout<<count;
+}
+
+
+void deleteatbeg()
+{
+    temp=head;
+    head=head->next;
+    delete(temp);
+    
+}
+
+void deleteatend()
+{
+    node* current;
+    temp=head;
+    while(temp->next!=NULL)
+    {
+         current=temp;
+        temp=temp->next;
+       
+    }
+    current->next=NULL;
+    delete(temp);
+    
+}
+
+void deleteatanypos(int pos)
+{
+    node* current;
+    temp=head;
+    int i;
+    while(i<pos)
+    {
+        temp=temp->next;
+    }
+    current=temp->next;
+    temp->next=current->next;
+    delete(current);
+}
+
+
+
+int main()
+{
+    insertatbeg(10);
+  // cout<<head->data;
+    insertatbeg(11);
+    //cout<<head->data;
+    insertatbeg(12);
+    //cout<<head->data<<endl;
+    
+         
+    
+    
+    insertatend(99);
+    //cout<<head->data;
+     insertatend(99);
+    //cout<<head->data;
+     insertatend(99);
+    //cout<<head->data<<endl;
+    
+    insertatpos(2,100);
+    display();
+   // length();
+    
+    //deleteatbeg();
+    //cout<<"after deletion";
+    
+   // deleteatend();
+    //cout<<"after deletion";
+    
+    deleteatanypos(3);
+    cout<<"after deletion";
+    
+    display();
+    return 0;
+}
