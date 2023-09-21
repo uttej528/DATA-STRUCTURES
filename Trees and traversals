@@ -1,0 +1,106 @@
+#include <iostream>
+#include <queue>  // Include the queue library
+using namespace std;
+
+class node {
+    public:
+    int data;
+    node* left;
+    node* right;
+
+
+    node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+node* buildtree() {
+    int data;
+    cout << "Enter the value of data: ";
+    cin >> data;
+    if (data == -1) {
+        return NULL;
+    }
+
+    node* root = new node(data);
+
+    cout << "Enter data for inserting to the left of " << data << ": ";
+    root->left = buildtree();
+
+    cout << "Enter data for inserting to the right of " << data << ": ";
+    root->right = buildtree();
+
+    return root;
+}
+
+void inorder(node* root) {
+    if (root == NULL)
+        return;
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+void preorder(node* root) {
+    if (root == NULL)
+        return;
+
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void postorder(node* root) {
+    if (root == NULL)
+        return;
+
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+
+void levelOrder(node* root) {
+    if (root == NULL)
+        return;
+
+    queue<node*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        node* curr = q.front();
+        q.pop();
+
+        cout << curr->data << " ";
+
+        if (curr->left)
+            q.push(curr->left);
+
+        if (curr->right)
+            q.push(curr->right);
+    }
+}
+
+int main() {
+    node* root = buildtree();
+
+    cout << "Inorder Traversal: ";
+    inorder(root);
+    cout << endl;
+
+    cout << "Preorder Traversal: ";
+    preorder(root);
+    cout << endl;
+
+    cout << "Postorder Traversal: ";
+    postorder(root);
+    cout << endl;
+
+    cout << "Level Order Traversal: ";
+    levelOrder(root);
+    cout << endl;
+
+    return 0;
+}
